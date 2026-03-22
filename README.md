@@ -10,7 +10,7 @@ An enterprise-grade **IT Service Management (ITSM)** platform that automates sup
 | Sharnam Shah | 23CS089 |
 | Het Soni | 23CS097 |
 
-**Mentors:** Dr. Jigar Sarda, Srushti Gajjar
+
 
 ---
 
@@ -149,12 +149,8 @@ tickit-assignment-and-sla/
 │   │   │   └── ui/ (Button, Card, Input, SlaProgressRing, NotificationBell)
 │   │   └── services/ (6 API service files)
 │   └── package.json
-│
-├── WEEKLY_REPORT_WEEK3-7.md    # Weekly progress reports
-├── HOW_TO_RUN.md               # Setup & run guide
-├── PROJECT_DEMO_SCRIPT.md      # Demo script with 80+ features
-├── ROADMAP.md                  # Project roadmap
-└── README.md                   # This file
+
+            # This file
 ```
 
 ---
