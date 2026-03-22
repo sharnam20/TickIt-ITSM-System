@@ -1,0 +1,591 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Enterprise Light Mode (High Contrast, Professional) */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+    --radius: 0.5rem;
+
+    /* Theme-aware semantic tokens */
+    --surface-primary: #ffffff;
+    --surface-secondary: #f8fafc;
+    --surface-tertiary: #f1f5f9;
+    --surface-elevated: #ffffff;
+    --surface-hover: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-faint: #94a3b8;
+    --border-primary: #e2e8f0;
+    --border-secondary: #cbd5e1;
+  }
+
+  .dark {
+    /* Enterprise Dark Mode (Stripe/Linear Inspired) */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    --surface-primary: #0B1120;
+    --surface-secondary: #0f172a;
+    --surface-tertiary: #1e293b;
+    --surface-elevated: #1e293b;
+    --surface-hover: #253347;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-faint: #64748b;
+    --border-primary: #1e293b;
+    --border-secondary: #334155;
+  }
+
+  * {
+    @apply border-border;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.1s ease, transform 0.1s ease;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    letter-spacing: -0.01em;
+  }
+
+  .dark body {
+    background-image: none;
+    background-color: hsl(var(--background));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* ============================================================
+   LIGHT MODE GLOBAL OVERRIDES
+   Intercepts Tailwind's hardcoded dark classes at the .light
+   scope and remaps them to appropriate light-mode equivalents.
+   ============================================================ */
+
+/* --- Background overrides for Slate scale --- */
+html.light .bg-slate-950,
+body.light .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-slate-900,
+body.light .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .bg-slate-800,
+body.light .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-700,
+body.light .bg-slate-700 {
+  background-color: #cbd5e1 !important;
+}
+
+/* --- Fractional opacity bg overrides --- */
+html.light .bg-slate-900\/50,
+body.light .bg-slate-900\/50 {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+html.light .bg-slate-900\/30,
+body.light .bg-slate-900\/30 {
+  background-color: rgba(241, 245, 249, 0.6) !important;
+}
+
+html.light .bg-slate-800\/80,
+body.light .bg-slate-800\/80 {
+  background-color: rgba(226, 232, 240, 0.9) !important;
+}
+
+html.light .bg-slate-800\/50,
+body.light .bg-slate-800\/50 {
+  background-color: rgba(226, 232, 240, 0.7) !important;
+}
+
+html.light .bg-slate-800\/40,
+body.light .bg-slate-800\/40 {
+  background-color: rgba(226, 232, 240, 0.5) !important;
+}
+
+html.light .bg-slate-800\/20,
+body.light .bg-slate-800\/20 {
+  background-color: rgba(226, 232, 240, 0.3) !important;
+}
+
+html.light .bg-slate-700\/50,
+body.light .bg-slate-700\/50 {
+  background-color: rgba(203, 213, 225, 0.5) !important;
+}
+
+/* --- Text color overrides (slate scale → dark text) --- */
+html.light .text-white,
+body.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-200,
+body.light .text-slate-200 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-300,
+body.light .text-slate-300 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-400,
+body.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .text-slate-500,
+body.light .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* --- Border overrides --- */
+html.light .border-slate-800,
+body.light .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .border-slate-800\/50,
+body.light .border-slate-800\/50 {
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+html.light .border-slate-700,
+body.light .border-slate-700 {
+  border-color: #cbd5e1 !important;
+}
+
+html.light .border-slate-700\/50,
+body.light .border-slate-700\/50 {
+  border-color: rgba(203, 213, 225, 0.7) !important;
+}
+
+html.light .border-slate-600,
+body.light .border-slate-600 {
+  border-color: #94a3b8 !important;
+}
+
+/* --- Hover states --- */
+html.light .hover\:bg-slate-800:hover,
+body.light .hover\:bg-slate-800:hover {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .hover\:bg-slate-800\/50:hover,
+body.light .hover\:bg-slate-800\/50:hover {
+  background-color: rgba(226, 232, 240, 0.6) !important;
+}
+
+html.light .hover\:bg-slate-700:hover,
+body.light .hover\:bg-slate-700:hover {
+  background-color: #cbd5e1 !important;
+}
+
+html.light .hover\:text-white:hover,
+body.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+html.light .hover\:text-slate-200:hover,
+body.light .hover\:text-slate-200:hover {
+  color: #334155 !important;
+}
+
+html.light .hover\:text-slate-300:hover,
+body.light .hover\:text-slate-300:hover {
+  color: #475569 !important;
+}
+
+html.light .hover\:border-slate-700:hover,
+body.light .hover\:border-slate-700:hover {
+  border-color: #cbd5e1 !important;
+}
+
+/* --- Gradient text fix (keep transparent for gradients) --- */
+html.light .text-transparent.bg-clip-text,
+body.light .text-transparent.bg-clip-text {
+  color: transparent !important;
+}
+
+/* --- Accent/Status background overrides --- */
+html.light .bg-indigo-900\/10,
+body.light .bg-indigo-900\/10 {
+  background-color: rgba(224, 231, 255, 0.5) !important;
+}
+
+html.light .bg-indigo-500\/5,
+body.light .bg-indigo-500\/5 {
+  background-color: rgba(224, 231, 255, 0.3) !important;
+}
+
+html.light .bg-indigo-500\/20,
+body.light .bg-indigo-500\/20 {
+  background-color: rgba(199, 210, 254, 0.5) !important;
+}
+
+html.light .bg-blue-900\/20,
+body.light .bg-blue-900\/20 {
+  background-color: rgba(219, 234, 254, 0.5) !important;
+}
+
+html.light .bg-blue-500\/10,
+body.light .bg-blue-500\/10 {
+  background-color: rgba(191, 219, 254, 0.5) !important;
+}
+
+html.light .bg-emerald-500\/10,
+body.light .bg-emerald-500\/10 {
+  background-color: rgba(209, 250, 229, 0.5) !important;
+}
+
+html.light .bg-amber-500\/10,
+body.light .bg-amber-500\/10 {
+  background-color: rgba(254, 243, 199, 0.5) !important;
+}
+
+html.light .bg-red-500\/10,
+body.light .bg-red-500\/10 {
+  background-color: rgba(254, 226, 226, 0.5) !important;
+}
+
+html.light .bg-rose-900\/30,
+body.light .bg-rose-900\/30 {
+  background-color: rgba(254, 226, 226, 0.3) !important;
+}
+
+html.light .bg-rose-500\/30,
+body.light .bg-rose-500\/30 {
+  background-color: rgba(254, 226, 226, 0.3) !important;
+}
+
+html.light .bg-cyan-500\/10,
+body.light .bg-cyan-500\/10 {
+  background-color: rgba(207, 250, 254, 0.5) !important;
+}
+
+/* --- Accent text colors (darken for readability on light bg) --- */
+html.light .text-indigo-400,
+body.light .text-indigo-400 {
+  color: #4f46e5 !important;
+}
+
+html.light .text-indigo-300,
+body.light .text-indigo-300 {
+  color: #6366f1 !important;
+}
+
+html.light .text-emerald-400,
+body.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+html.light .text-cyan-400,
+body.light .text-cyan-400 {
+  color: #0891b2 !important;
+}
+
+html.light .text-blue-400,
+body.light .text-blue-400 {
+  color: #2563eb !important;
+}
+
+html.light .text-amber-400,
+body.light .text-amber-400 {
+  color: #d97706 !important;
+}
+
+html.light .text-rose-400,
+body.light .text-rose-400 {
+  color: #e11d48 !important;
+}
+
+html.light .text-rose-500,
+body.light .text-rose-500 {
+  color: #e11d48 !important;
+}
+
+html.light .text-red-400,
+body.light .text-red-400 {
+  color: #dc2626 !important;
+}
+
+/* --- Hardcoded HEX Backgrounds via style attribute ---
+   These target inline Tailwind arbitrary values compiled to actual styles */
+html.light [style*="background-color: rgb(11, 17, 32)"],
+html.light [style*="background-color: #0B1120"],
+html.light [style*="background-color:#0B1120"],
+html.light [style*="background-color: #0b1120"],
+body.light [style*="background-color: rgb(11, 17, 32)"],
+body.light [style*="background-color: #0B1120"],
+body.light [style*="background-color:#0B1120"],
+body.light [style*="background-color: #0b1120"] {
+  background-color: #ffffff !important;
+}
+
+html.light [style*="background-color: rgb(15, 23, 42)"],
+html.light [style*="background: rgb(15, 23, 42)"],
+html.light [style*="background-color: #0f172a"],
+html.light [style*="background:#0f172a"],
+body.light [style*="background-color: rgb(15, 23, 42)"],
+body.light [style*="background: rgb(15, 23, 42)"],
+body.light [style*="background-color: #0f172a"],
+body.light [style*="background:#0f172a"] {
+  background-color: #f8fafc !important;
+}
+
+html.light [style*="background: #1E293B"],
+html.light [style*="background-color: #1E293B"],
+html.light [style*="background: rgb(30, 41, 59)"],
+body.light [style*="background: #1E293B"],
+body.light [style*="background-color: #1E293B"],
+body.light [style*="background: rgb(30, 41, 59)"] {
+  background-color: #ffffff !important;
+}
+
+/* ============================================================
+   END LIGHT MODE OVERRIDES
+   ============================================================ */
+
+@layer utilities {
+
+  /* Glass — Dark default */
+  .glass {
+    @apply bg-slate-900/50 backdrop-blur-md border-b border-white/5;
+  }
+
+  /* Glass Card — Dark default */
+  .glass-card {
+    background: #1E293B;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    background: #253347;
+  }
+
+  .text-gradient {
+    @apply text-white;
+  }
+
+  .premium-shadow {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Input */
+  .input-premium {
+    @apply bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm text-white placeholder-slate-500;
+  }
+
+  /* Button */
+  .btn-premium {
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 px-5 rounded-lg shadow-sm hover:shadow hover:translate-y-[-1px] transition-all;
+  }
+
+  /* Badges */
+  .badge-success {
+    @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-warning {
+    @apply bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-error {
+    @apply bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-neutral {
+    @apply bg-slate-700/50 text-slate-400 border border-slate-600 px-2.5 py-0.5 rounded text-xs font-medium;
+  }
+
+  /* Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+}
+
+/* --- Light mode utility overrides (outside @layer for specificity) --- */
+
+/* Glass */
+html.light .glass,
+body.light .glass {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Glass Card */
+html.light .glass-card,
+body.light .glass-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .glass-card:hover,
+body.light .glass-card:hover {
+  background: #f8fafc !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Text Gradient → Solid dark text */
+html.light .text-gradient,
+body.light .text-gradient {
+  color: #0f172a !important;
+}
+
+/* Premium Shadow → softer */
+html.light .premium-shadow,
+body.light .premium-shadow {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Input */
+html.light .input-premium,
+body.light .input-premium {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Button text stays white */
+html.light .btn-premium,
+body.light .btn-premium {
+  color: #ffffff !important;
+}
+
+/* Badges in Light Mode */
+html.light .badge-success,
+body.light .badge-success {
+  background-color: rgba(209, 250, 229, 0.6) !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+
+html.light .badge-warning,
+body.light .badge-warning {
+  background-color: rgba(254, 243, 199, 0.6) !important;
+  color: #b45309 !important;
+  border-color: #fcd34d !important;
+}
+
+html.light .badge-error,
+body.light .badge-error {
+  background-color: rgba(254, 226, 226, 0.6) !important;
+  color: #b91c1c !important;
+  border-color: #fca5a5 !important;
+}
+
+html.light .badge-neutral,
+body.light .badge-neutral {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Scrollbar */
+html.light .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+}
+
+html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================
+   RECHARTS LIGHT MODE FIXES
+   ============================================================ */
+html.light .recharts-default-tooltip,
+body.light .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .recharts-tooltip-label {
+  color: #0f172a !important;
+}
+
+html.light .recharts-tooltip-item {
+  color: #334155 !important;
+}
+
+html.light .recharts-cartesian-grid line {
+  stroke: #e2e8f0 !important;
+}

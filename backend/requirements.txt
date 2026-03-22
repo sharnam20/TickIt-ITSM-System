@@ -1,0 +1,10 @@
+Flask==2.2.5
+Werkzeug==2.2.3
+flask-cors
+flask-jwt-extended
+pymongo
+dnspython
+python-dotenv
+mongoengine
+flask-mongoengine
+Flask-Mail
